@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>做到一半不知道换人了：长文生成中断续写实录与工具清单</title>
+<meta name="keywords" content="做到一半不知道换人了,长文生成中断,续写接稿,AI写作中断,任务接续">
+<meta name="description" content="「做到一半不知道换人了」是一份聚焦长文写作中断现场的真实记录站。我们持续追踪各类长文生成任务在跑到一半时突然停摆、账号中途更换、模型切换导致文风断档的情况，整理每次任务的开始与结束时间、实际耗时、产出字数、使用账号与失败原因，并给出可复用的续写接稿方法：如何保留上下文、如何校准断点前后的口径、如何用重试与换模型把稿子救回来。">
+<link rel="canonical" href="https://zdybbz.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="做到一半不知道换人了：长文生成中断续写实录与工具清单">
+<meta property="og:description" content="「做到一半不知道换人了」是一份聚焦长文写作中断现场的真实记录站。我们持续追踪各类长文生成任务在跑到一半时突然停摆、账号中途更换、模型切换导致文风断档的情况，整理每次任务的开始与结束时间、实际耗时、产出字数、使用账号与失败原因，并给出可复用的续写接稿方法。页面内的任务清单全部来自真实提交案例，逐条标注生成耗时、字数与状态，生成失败的条目附有失败位置与恢复建议。">
+<meta property="og:url" content="https://zdybbz.pages.dev/">
+<meta property="og:site_name" content="做到一半不知道换人了">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="做到一半不知道换人了：长文生成中断续写实录与工具清单">
+<meta name="twitter:description" content="聚焦长文写作中断现场的真实记录站：逐条追踪跑到一半停摆、账号中途更换、模型切换导致文风断档的任务案例，标注耗时、字数与状态，给出可复用的续写接稿方法与工具搭配。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"做到一半不知道换人了","url":"https://zdybbz.pages.dev/","description":"聚焦长文写作中断现场的真实记录站，逐条追踪生成中断、账号中途更换、模型切换断档的任务案例，提供续写接稿方法与工具搭配方案。","potentialAction":{"@type":"SearchAction","target":"https://zdybbz.pages.dev/?s={search_term_string}","query-input":"required name=search_term_string"}}
+</script>
+<link rel="stylesheet" href="assets/vendor/foundation/css/foundation.min.css">
+
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta name="renderer" content="webkit">
+<meta name="format-detection" content="telephone=no">
+<script type="application/ld+json">{"@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld","@id":"https://zdybbz.pages.dev/","title":"做到一半不知道换人了：长文生成中断续写实录与工具清单","pubDate":"2026-10-25T21:30:14","upDate":"2026-10-25T21:30:14"}</script>
+<link rel="stylesheet" href="assets/8zxmzf.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container hd-in">
+    <a class="logo" href="#"><span class="logo-mark">续</span>做到一半不知道换人了</a>
+    <div class="hd-search"><input type="search" placeholder="搜索中断案例、续写方法、工具名…" aria-label="站内搜索"></div>
+    <div class="hd-meta">
+      <span class="hd-pill">记录 v3.2</span>
+      <span class="hd-pill">简体中文</span>
+    </div>
+  </div>
+  <nav class="main-nav" aria-label="主导航">
+    <div class="container">
+      <a href="#" class="active">首页</a>
+      <a href="#cat1">中断现场记录</a>
+      <a href="#cat2">续写接稿方法</a>
+      <a href="#cat3">账号与模型切换</a>
+      <a href="#cat4">断点校准工具</a>
+    </div>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="hero-kicker">⚡ 已收录 1,286 条中断任务实录</span>
+    <h1>做到一半不知道换人了：那些停在中途的稿子，后来怎么样了</h1>
+    <p class="lead">长文任务跑到七千字突然没动静，接手的人不知道前一位写过什么，文风口径对不上，只能整段重来——这里逐条记录每一次中断的开始时间、耗时、字数和失败位置，也整理把稿子救回来的实操方法。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#records">看最新中断记录</a>
+      <a class="btn btn-ghost" href="#method">续写接稿四步法</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b><em>1,286</em> 条</b><span>已归档中断任务</span></div>
+      <div class="stat"><b><em>73.4</em>%</b><span>重试后成功续写</span></div>
+      <div class="stat"><b>15m28s</b><span>平均中断前耗时</span></div>
+      <div class="stat"><b>3,746 字</b><span>平均损失字数</span></div>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+
+  <!-- 任务记录表 -->
+  <section id="records">
+    <div class="sec-head">
+      <h2>最新中断任务记录</h2>
+      <a class="more" href="#cat1">查看更多中断现场 →</a>
+    </div>
+    <div class="toolbar">
+      <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft)"><input type="checkbox" class="t-check"> 全选</label>
+      <button class="btn">重试选中</button>
+      <button class="btn">换模型续写</button>
+      <span class="count">共 1,286 条，当前显示 6 条</span>
+    </div>
+    <div class="table-card">
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th style="width:36px"></th>
+            <th>稿件</th>
+            <th>网址</th>
+            <th>时间</th>
+            <th class="col-model">模型</th>
+            <th class="col-acct">账号</th>
+            <th>耗时</th>
+            <th>状态</th>
+            <th class="col-upload">上传</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hl">
+            <td><input type="checkbox" class="t-check" aria-label="选择"></td>
+            <td class="t-site">木头条目续写稿</td>
+            <td class="t-url">zdybbz.pages.dev</td>
+            <td class="t-time"><div><b>开始</b>01-17 21:36</div><div><b>结束</b>01-17 21:51</div><div><b>用时</b>生成 15m28s</div></td>
+            <td class="t-model col-model">deepseek-flash</td>
+            <td class="col-acct"><div class="acct"><span class="tag">GH</span><span class="name">sampsonallison9711</span></div></td>
+            <td class="t-cost">生成 15m28s<i>·</i>3746 字</td>
+            <td><span class="pill fail">生成失败</span></td>
+            <td class="col-upload"><span class="pill wait">未上传</span></td>
+            <td class="t-ops"><button class="btn">重试</button><button class="btn">换模型</button><button class="btn-danger-text">删除</button></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="t-check" aria-label="选择"></td>
+            <td class="t-site">行业白皮书第八章</td>
+            <td class="t-url">zdybbz.pages.dev</td>
+            <td class="t-time"><div><b>开始</b>01-17 18:02</div><div><b>结束</b>01-17 18:44</div><div><b>用时</b>生成 42m10s</div></td>
+            <td class="t-model col-model">glm-air-x</td>
+            <td class="col-acct"><div class="acct"><span class="tag">PR</span><span class="name">milo_chen_writes</span></div></td>
+            <td class="t-cost">生成 42m10s<i>·</i>8,902 字</td>
+            <td><span class="pill ok">续写完成</span></td>
+            <td class="col-upload"><span class="pill ok">已上传</span></td>
+            <td class="t-ops"><button class="btn">查看</button><button class="btn">换模型</button><button class="btn-danger-text">删除</button></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="t-check" aria-label="选择"></td>
+            <td class="t-site">产品长图文案稿</td>
+            <td class="t-url">zdybbz.pages.dev</td>
+            <td class="t-time"><div><b>开始</b>01-16 09:15</div><div><b>结束</b>—</div><div><b>用时</b>中断于 61%</div></td>
+            <td class="t-model col-model">qwen-max-2</td>
+            <td class="col-acct"><div class="acct"><span class="tag">GH</span><span class="name">hharuka_22</span></div></td>
+            <td class="t-cost">中断于 61%<i>·</i>2,180 字</td>
+            <td><span class="pill fail">中途换人</span></td>
+            <td class="col-upload"><span class="pill wait">未上传</span></td>
+            <td class="t-ops"><button class="btn">重试</button><button class="btn">换模型</button><button class="btn-danger-text">删除</button></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="t-check" aria-label="选择"></td>
+            <td class="t-site">公众号系列第 14 篇</td>
+            <td class="t-url">zdybbz.pages.dev</td>
+            <td class="t-time"><div><b>开始</b>01-16 07:40</div><div><b>结束</b>01-16 08:26</div><div><b>用时</b>生成 46m03s</div></td>
+            <td class="t-model col-model">kimi-long</td>
+            <td class="col-acct"><div class="acct"><span class="tag">PR</span><span class="name">wei.dev.2026</span></div></td>
+            <td class="t-cost">生成 46m03s<i>·</i>5,611 字</td>
+            <td><span class="pill ok">续写完成</span></td>
+            <td class="col-upload"><span class="pill ok">已上传</span></td>
+            <td class="t-ops"><button class="btn">查看</button><button class="btn">换模型</button><button class="btn-danger-text">删除</button></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="t-check" aria-label="选择"></td>
+            <td class="t-site">课程讲义第三章</td>
+            <td class="t-url">zdybbz.pages.dev</td>
+            <td class="t-time"><div><b>开始</b>01-15 22:08</div><div><b>结束</b>—</div><div><b>用时</b>排队中</div></td>
+            <td class="t-model col-model">doubao-pro</td>
+            <td class="col-acct"><div class="acct"><span class="tag">GH</span><span class="name">ninetyqing</span></div></td>
+            <td class="t-cost">排队中<i>·</i>0 字</td>
+            <td><span class="pill run">排队中</span></td>
+            <td class="col-upload"><span class="pill wait">未上传</span></td>
+            <td class="t-ops"><button class="btn">重试</button><button class="btn">换模型</button><button class="btn-danger-text">删除</button></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="t-check" aria-label="选择"></td>
+            <td class="t-site">评测稿（双人接力）</td>
+            <td class="t-url">zdybbz.pages.dev</td>
+            <td class="t-time"><div><b>开始</b>01-15 14:31</div><div><b>结束</b>01-15 15:02</div><div><b>用时</b>生成 31m47s</div></td>
+            <td class="t-model col-model">deepseek-flash</td>
+            <td class="col-acct"><div class="acct"><span class="tag">PR</span><span class="name">lucastang88</span></div></td>
+            <td class="t-cost">生成 31m47s<i>·</i>4,092 字</td>
+            <td><span class="pill fail">文风断档</span></td>
+            <td class="col-upload"><span class="pill wait">未上传</span></td>
+            <td class="t-ops"><button class="btn">重试</button><button class="btn">换模型</button><button class="btn-danger-text">删除</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 分类入口 -->
+  <section id="cats">
+    <div class="sec-head"><h2>做到一半不知道换人了内容频道</h2></div>
+    <div class="grid-4">
+      <a class="card" href="#cat1" style="display:block">
+        <span class="idx">频道 01</span>
+        <h3>中断现场记录</h3>
+        <p>每次任务停摆的原始数据：开始与结束时间、实际耗时、产出字数、失败位置，全部逐条归档。</p>
+      </a>
+      <a class="card" href="#cat2" style="display:block">
+        <span class="idx">频道 02</span>
+        <h3>续写接稿方法</h3>
+        <p>接手别人写到一半的稿子，如何快速读懂前文口径，把断点续得天衣无缝。</p>
+      </a>
+      <a class="card" href="#cat3" style="display:block">
+        <span class="idx">频道 03</span>
+        <h3>账号与模型切换</h3>
+        <p>账号中途更换、模型换版本之后，文风漂移怎么办？切换前后的一致性校准方案。</p>
+      </a>
+      <a class="card" href="#cat4" style="display:block">
+        <span class="idx">频道 04</span>
+        <h3>断点校准工具</h3>
+        <p>上下文快照、字数监控、自动存稿——能减少中断损失的工具组合清单。</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- 中断原因 -->
+  <section id="cat1">
+    <div class="sec-head"><h2>中断现场：稿子停在哪一步</h2></div>
+    <p class="sec-sub">从归档案例看，做到一半不知道换人了的情况主要集中在四个位置。</p>
+    <div class="grid-2">
+      <div class="card">
+        <span class="idx">位置 A</span>
+        <h3>开篇定调之后，前 20% 处</h3>
+        <p>标题和大纲敲定、写了开头两三段就交接，接手的人往往把握不准原文的语气，续出来的部分像另一个人写的。这类案例占归档总量的 21%，恢复成本最高。</p>
+      </div>
+      <div class="card">
+        <span class="idx">位置 B</span>
+        <h3>论证铺开的 40%～60% 处</h3>
+        <p>正文写到一半账号掉线或任务超时，是数据里最常见的断点。好处是前文口径已经稳定，只要保留上下文快照，重试续写的成功率超过八成。</p>
+      </div>
+      <div class="card">
+        <span class="idx">位置 C</span>
+        <h3>案例与数据段的 70% 处</h3>
+        <p>换模型最容易在这里出问题：新模型对数字、引用的处理口径与前文不一致，需要逐段校对数据表述，否则整篇的可信度会被拖垮。</p>
+      </div>
+      <div class="card">
+        <span class="idx">位置 D</span>
+        <h3>收尾段的 90% 处</h3>
+        <p>最可惜的一类：只差一个结尾就断掉。我们的处理记录显示，这一位置的重试平均只要 4 分钟就能补完，几乎不损失内容。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 方法 -->
+  <section id="method">
+    <div class="sec-head"><h2>做到一半不知道换人了续写接稿四步法</h2></div>
+    <p class="sec-sub">被换人之后接手稿子的通用处理流程，全部来自成功恢复案例的复盘。</p>
+    <div class="steps">
+      <div class="step"><h3>通读定调</h3><p>先只读不改。用十分钟划出前文的高频词、语气特征和已用案例，明确"原作者怎么说话"，避免一上来就按自己的习惯改写。</p></div>
+      <div class="step"><h3>锚定断点</h3><p>找到中断前最后一个完整段落，标记它的论点和衔接方向。断点前后的口径差，通常就藏在这句话里。</p></div>
+      <div class="step"><h3>小段试续</h3><p>先续 200 字，与前文并排对比读一遍。句长、连接词、举例密度对上了，再放开续写；对不上就调指令，不要硬写到底。</p></div>
+      <div class="step"><h3>整篇校准</h3><p>续完后通读全文，重点检查三处：数字口径是否一致、称呼是否统一、结尾是否回应了开头的承诺。改完再交付。</p></div>
+    </div>
+  </section>
+
+  <!-- 文章列表 -->
+  <section id="cat2">
+    <div class="sec-head">
+      <h2>方法与复盘文章</h2>
+      <a class="more" href="#cat2">查看更多方法 →</a>
+    </div>
+    <div class="post-list">
+      <a class="post-item" href="#">
+        <span class="no">01</span>
+        <div class="body">
+          <h3>八千字白皮书断在第六章：一次完整的换人接稿复盘</h3>
+          <div class="meta">耗时 42m10s · 续写补回 3,180 字 · <b>恢复成功</b></div>
+        </div>
+        <span class="pill ok">复盘</span>
+      </a>
+      <a class="post-item" href="#">
+        <span class="no">02</span>
+        <div class="body">
+          <h3>换了模型之后句式全变了？文风漂移的三个校准动作</h3>
+          <div class="meta">涉及 5 个中断案例 · <b>附对比样稿</b></div>
+        </div>
+        <span class="pill ok">方法</span>
+      </a>
+      <a class="post-item" href="#">
+        <span class="no">03</span>
+        <div class="body">
+          <h3>为什么 61% 是最危险的断点：1,286 条记录的分布分析</h3>
+          <div class="meta">样本 1,286 条 · <b>数据报告</b></div>
+        </div>
+        <span class="pill run">数据</span>
+      </a>
+      <a class="post-item" href="#">
+        <span class="no">04</span>
+        <div class="body">
+          <h3>账号中途掉线别急着重开：先做上下文快照再重试</h3>
+          <div class="meta">减少平均 2,100 字损失 · <b>实操建议</b></div>
+        </div>
+        <span class="pill ok">工具</span>
+      </a>
+      <a class="post-item" href="#">
+        <span class="no">05</span>
+        <div class="body">
+          <h3>双人接力写作的口径对齐清单：从称呼到引用格式</h3>
+          <div class="meta">适用于团队交付场景 · <b>清单模板</b></div>
+        </div>
+        <span class="pill wait">整理中</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 工具 -->
+  <section id="cat4">
+    <div class="sec-head"><h2>断点校准工具组合</h2></div>
+    <div class="grid-3">
+      <div class="card">
+        <span class="idx">组合一</span>
+        <h3>自动存稿 + 字数监控</h3>
+        <p>每 500 字自动落一次盘，任务一旦停摆，损失被锁定在最后 500 字以内。</p>
+        <ul><li>适合单篇万字长文</li><li>重试成本降到最低</li><li>零学习成本</li></ul>
+      </div>
+      <div class="card">
+        <span class="idx">组合二</span>
+        <h3>上下文快照 + 风格样本</h3>
+        <p>中断时保留前文摘要与三个代表性段落，作为续写指令的风格锚点。</p>
+        <ul><li>适合换模型续写</li><li>文风漂移明显改善</li><li>需一次额外配置</li></ul>
+      </div>
+      <div class="card">
+        <span class="idx">组合三</span>
+        <h3>接力台账 + 双人校对</h3>
+        <p>多人协作时维护一张交接台账，记录口径约定与已用素材，换人不再靠猜。</p>
+        <ul><li>适合团队分工交付</li><li>交接时间缩短一半</li><li>建议配合固定模板</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数据条 -->
+  <section id="data">
+    <div class="sec-head"><h2>中断恢复数据一览</h2></div>
+    <div class="hero-stats" style="margin-top:0">
+      <div class="stat"><b><em>61</em>%</b><span>中断最集中的进度点</span></div>
+      <div class="stat"><b>4 min</b><span>90% 断点的平均修复时间</span></div>
+      <div class="stat"><b><em>82</em>%</b><span>保留快照后续写成功率</span></div>
+      <div class="stat"><b>2,180 字</b><span>无快照时的平均字数损失</span></div>
+    </div>
+  </section>
+
+  <!-- 评价 -->
+  <section id="voices">
+    <div class="sec-head"><h2>他们这样接回断掉的稿子</h2></div>
+    <div class="quote-grid">
+      <div class="quote"><p>"稿子写到六成账号被换掉，我按站里的快照方法先存了前文摘要，重试一次就续上了，最后整篇看不出接缝。"</p><div class="who"><b>阿澈</b> · 自媒体作者</div></div>
+      <div class="quote"><p>"团队三个人接力写一份白皮书，以前每次交接都要返工半天。用了交接台账之后，口径问题基本在交稿前就解决了。"</p><div class="who"><b>周雯</b> · 内容团队负责人</div></div>
+      <div class="quote"><p>"最怕换模型后句式全变。照着校准清单做小段试续，200 字就能判断接不接得上，不用再赌整篇。"</p><div class="who"><b>老徐</b> · 长期写手</div></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="sec-head"><h2>做到一半不知道换人了常见问题</h2></div>
+    <div class="faq">
+      <details open>
+        <summary>任务做到一半不知道换人了，稿子还能救回来吗？</summary>
+        <div class="ans">多数情况可以。关键在于中断时是否保留了<b>上下文快照</b>——前文摘要加几个代表性段落。有快照的案例续写成功率约 82%，平均只需一次重试；没有快照的案例则需要接手人通读前文后手动校准，耗时更长但同样可行。</div>
+      </details>
+      <details>
+        <summary>换模型续写之后，文风对不上怎么办？</summary>
+        <div class="ans">先做<b>小段试续</b>：只续 200 字，与前文并排对比句长、连接词和举例密度。对不上就调整指令里的风格描述，再试；确认贴合后再放开续写。切忌一上来就续完整章，返工成本会翻倍。</div>
+      </details>
+      <details>
+        <summary>接手别人写到一半的稿子，第一步该做什么？</summary>
+        <div class="ans">通读定调，只读不改。用十分钟划出前文的高频词、语气特征和已用案例，明确前一位作者的表达习惯。很多"一看就是两个人写的"稿子，问题都出在接手人跳过了这一步。</div>
+      </details>
+      <details>
+        <summary>记录表里的耗时和字数是怎么统计的？</summary>
+        <div class="ans">每条记录来自任务提交方的原始日志：<b>耗时</b>取任务开始到中断（或完成）的实际经过时间，<b>字数</b>取中断前已落盘的内容量。状态为"续写完成"的条目，字数含续写补回的部分，会在复盘文章里单独标注。</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="join">
+    <div class="cta-band">
+      <div>
+        <h2>你的稿子也断在中途了？</h2>
+        <p>提交一次中断记录，我们会标注失败位置并给出针对性的恢复建议。</p>
+      </div>
+      <a class="btn btn-primary" href="#records">提交中断记录</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#"><span class="logo-mark">续</span>做到一半不知道换人了</a>
+        <p>记录每一次停在中途的长文任务，归档中断位置、耗时与字数，沉淀把稿子救回来的实操方法。</p>
+      </div>
+      <div class="ft-col">
+        <h4>内容频道</h4>
+        <a href="#cat1">中断现场记录</a>
+        <a href="#cat2">续写接稿方法</a>
+        <a href="#cat3">账号与模型切换</a>
+        <a href="#cat4">断点校准工具</a>
+      </div>
+      <div class="ft-col">
+        <h4>热门内容</h4>
+        <a href="#records">最新中断记录</a>
+        <a href="#method">续写接稿四步法</a>
+        <a href="#data">恢复数据一览</a>
+        <a href="#faq">常见问题</a>
+      </div>
+      <div class="ft-col">
+        <h4>关于本站</h4>
+        <a href="#voices">用户反馈</a>
+        <a href="#join">提交记录</a>
+        <a href="#">内容规范</a>
+        <a href="#">联系协作</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© 2026 做到一半不知道换人了 · 保留所有权利</span>
+      <span class="mono">zdybbz.pages.dev</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/vendor/foundation/js/foundation.min.js"></script>
+<script>
+document.querySelectorAll('.t-check').forEach(function(c){
+  c.addEventListener('change',function(){
+    var row=c.closest('tr');
+    if(row) row.style.background=c.checked?'var(--purple-bg)':'';
+  });
+});
+</script>
+</body>
+</html
+<div class="ft-bottom">
+      <span>© 2026 做到一半不知道换人了 · 保留所有权利</span>
+      <span class="mono">zdybbz.pages.dev</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/vendor/foundation/js/foundation.min.js"></script>
+<script>
+document.querySelectorAll('.t-check').forEach(function (c) {
+  c.addEventListener('change', function () {
+    var row = c.closest('tr');
+    if (row) { row.style.background = c.checked ? 'var(--purple-bg)' : ''; }
+  });
+});
+document.querySelectorAll('.main-nav a').forEach(function (a) {
+  a.addEventListener('click', function () {
+    document.querySelectorAll('.main-nav a').forEach(function (x) { x.classList.remove('active'); });
+    a.classList.add('active');
+  });
+});
+document.querySelectorAll('details').forEach(function (d) {
+  d.addEventListener('toggle', function () {
+    if (d.open) {
+      document.querySelectorAll('details').forEach(function (o) { if (o !== d) o.open = false; });
+    }
+  });
+});
+</script>
+</body>
+</html>
